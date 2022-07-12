@@ -1,0 +1,36 @@
+{% extends "frontend/basic.html" %}
+{%load static%}
+{%block title%}
+<title></title>
+{%endblock%}
+{%block body%}
+<div class="container my-2">
+    <h1>{{data.name}}</h1>
+    <div class="row">
+        <form action="/project/create" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Project Name</label>
+                <input type="text" class="form-control" id="name" , name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Project Description</label>
+                <input type="text" class="form-control" id="desc" , name="desc"required>
+            </div>
+            <div class="mb-3">
+                <label for="img" class="form-label">Select Avatar:</label>
+                <input type="file" class="form-control" id="img" name="img" accept="image/*" required>
+            </div>
+            <div class="mb-3">
+                <label for="sd" class="form-label">start date</label>
+                <input type="date" class="form-control" id="sd" name="sd" placeholder="Date" required>
+            </div>
+            <div class="mb-3">
+                <label for="ed" class="form-label">end date</label>
+                <input type="date" class="form-control" id="ed" name="ed" placeholder="Date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

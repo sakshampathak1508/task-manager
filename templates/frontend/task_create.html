@@ -1,0 +1,32 @@
+{% extends "frontend/basic.html" %}
+{%load static%}
+{%block title%}
+<title></title>
+{%endblock%}
+{%block body%}
+<div class="container my-2">
+    <h1>task for {{data.project}}</h1>
+    <div class="row">
+        <form action="/project/{{data.project}}/task/create" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Task Name</label>
+                <input type="text" class="form-control" id="name" , name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Task Description</label>
+                <input type="text" class="form-control" id="desc" , name="desc" required>
+            </div>
+            <div class="mb-3">
+                <label for="sd" class="form-label">Task Start date</label>
+                <input type="date" class="form-control" id="sd" name="sd" placeholder="Date" required>
+            </div>
+            <div class="mb-3">
+                <label for="ed" class="form-label">Task End date</label>
+                <input type="date" class="form-control" id="ed" name="ed" placeholder="Date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

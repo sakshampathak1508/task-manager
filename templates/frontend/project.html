@@ -1,0 +1,38 @@
+{% extends "frontend/basic.html" %}
+{%load static%}
+{%block title%}
+<title>{{data.name}}</title>
+{%endblock%}
+{%block body%}
+<div class="container my-2">
+    <h1>{{data.name}}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <img src="{{data.image}}" width="auto" height="100%">
+            </div>
+            <div class="row">
+                <a href="/project/{{data.id}}/edit"><button type="button" class="btn btn-outline-warning my-2">Edit Project</button></a>
+                <a href="/project/{{data.id}}/delete"><button type="button" class="btn btn-outline-danger my-2">Delete Project</button></a>
+            </div>    
+        </div>
+        <div class="col-md-6">
+            <h3>Subsequent Tasks: <a href="/project/{{data.id}}/task/create"><button type="button" class="btn btn-success">Add Task</button></a></h3>
+            <p>Expand to see task details and their sub tasks</p>
+            <div class="list-group">
+                {%for i in task_data%}
+                <a href="/project/{{data.id}}/task/{{i.id}}"><button type="button" class="list-group-item list-group-item-action">{{i.name}}</button></a>
+                {%endfor%}
+            </div>
+        </div>
+        
+        <!-- tasks -->
+        <br>
+        <div class="col-md-8 my-2">
+            <h5>{{data.desc}}</h5>
+            <p><b>Start Date:{{data.start_date}}</b></p>
+            <p><b>End Date: {{data.end_date}}</b></p>
+        </div>
+    </div>
+</div>
+{%endblock%}

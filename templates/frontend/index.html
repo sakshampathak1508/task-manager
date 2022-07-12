@@ -1,0 +1,27 @@
+{% extends "frontend/basic.html" %}
+{%load static%}
+{%block title%}
+<title>Project Manager</title>
+{%endblock%}
+{%block body%}
+<div class="container my-2">
+    <h1>MY PROJECTS</h1> 
+    <a href="/project/create"><button type="button" class="btn btn-outline-success my-2">Add Project</button></a>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {%for i in data%}
+        <div class="col">
+            <div class="card h-100">
+                <a href="/project/{{i.id}}"><img src="{{i.image}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                    <a href="/project/{{i.id}}"><h5 class="card-title">{{i.name}}</h5></a>
+                    <p class="card-text">{{i.desc}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{i.start_date}} to {{i.end_date}}</small>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}
