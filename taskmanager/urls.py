@@ -25,9 +25,9 @@ urlpatterns = [
     path('api/',include('backend.urls')),
     path('',include('frontend.urls')),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                        document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns.append(url(f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
-                       mediaserve, {'document_root': settings.MEDIA_ROOT}))
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,
+#                         document_root=settings.MEDIA_ROOT)
+# else:
+urlpatterns.append(url(f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
+                    mediaserve, {'document_root': settings.MEDIA_ROOT}))
