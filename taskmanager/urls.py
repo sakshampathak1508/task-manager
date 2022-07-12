@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('backend.urls')),
     path('',include('frontend.urls')),
+    # url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
