@@ -11,3 +11,8 @@ all well is in this project deployed too on heroku it fullfils every need and th
 Kindly check it and if any doubt arises please let me know
 
 Thank You
+
+you can go on the admin panel and login as 
+
+username = 123456
+password = 123456
