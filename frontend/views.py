@@ -86,13 +86,9 @@ def project_create(request):
             data['start_date'] = sd
         if(ed!=''):
             data['end_date'] = ed
-        r = requests.post('https://task-manager-ufaber.herokuapp.com/api/project/',data=data)
-        image = request.FILES.get('img',False)
-        r = r.json()
-        pk = r['id']
-        obj = Project.objects.filter(id=pk).first()
-        obj.image = image
-        obj.save()
+        image = request.FILES['img']
+        files = {'image': image}
+        r = requests.post('https://task-manager-ufaber.herokuapp.com/api/project/',data=data,files=files)
         return redirect('/')
     return render(request,"frontend/project_create.html",{'data':data})
 
@@ -112,12 +108,12 @@ def project_edit(request,pk):
             data['start_date'] = sd
         if(ed!=''):
             data['end_date'] = ed
-        r = requests.put('https://task-manager-ufaber.herokuapp.com/api/project/'+str(pk)+"/",data=data)
         image = request.FILES.get('img',False)
+        files = {}
         if(image):
-            obj = Project.objects.filter(id=pk).first()
-            obj.image = image
-            obj.save()
+            image = request.FILES['img']
+            files['image'] = image
+        r = requests.put('https://task-manager-ufaber.herokuapp.com/api/project/'+str(pk)+"/",data=data,files=files)
         return redirect('/project/'+str(pk))
     return render(request,"frontend/project_form.html",{'data':data})
 
